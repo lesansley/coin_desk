@@ -1,7 +1,7 @@
 import React from "react";
 
 function Details() {
-  return <>Details Page</>;
+  return <h2>Details Page</h2>;
 }
 
 export default Details;
