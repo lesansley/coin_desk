@@ -10,7 +10,7 @@ export const useCoinRequest = (path) => {
 
   const url = baseUrl + path;
   const { data, error, mutate, size, setSize, isValidating } = useSWRInfinite(
-    (index) => `${url}&per_page=10&page=${index + 1}`
+    (index) => `${url}&per_page=12&page=${index + 1}`
   );
   return { data, error, mutate, size, setSize, isValidating };
 };

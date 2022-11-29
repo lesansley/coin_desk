@@ -1,10 +1,10 @@
 import React from "react";
-import { Button, Spinner } from "reactstrap";
+import { Button, Spinner, Container, Row, Col } from "reactstrap";
 import CoinCard from "./coin-card";
 import useCoinRequest from "../hooks/useCoinRequest";
 
 //TODO: Pull from context
-const PAGE_SIZE = 10;
+const PAGE_SIZE = 12;
 
 function CoinDeck({ ...props }) {
   const result = useCoinRequest(
@@ -29,22 +29,26 @@ function CoinDeck({ ...props }) {
     <>
       <h3>Coin Deck</h3>
 
-      {coins.map((coin) => {
-        return (
-          <CoinCard
-            key={coin.id}
-            image={coin.image}
-            name={coin.name}
-            marketCap={coin.market_cap}
-            volume={coin.total_volume}
-            price={coin.current_price}
-            symbol={coin.symbol}
-            high={coin.high_24h}
-            low={coin.low_24h}
-          />
-        );
-      })}
-      <CoinCard />
+      <Row lg="4" md="3" sm="2" xs="1">
+        {coins.map((coin) => {
+          return (
+            <Col className="pl-10 pr-10">
+              <CoinCard
+                key={coin.id}
+                image={coin.image}
+                name={coin.name}
+                marketCap={coin.market_cap}
+                volume={coin.total_volume}
+                price={coin.current_price}
+                symbol={coin.symbol}
+                high={coin.high_24h}
+                low={coin.low_24h}
+              />
+            </Col>
+          );
+        })}
+      </Row>
+
       <Button
         disabled={isLoadingMore || isReachingEnd}
         onClick={() => setSize(size + 1)}

@@ -8,7 +8,14 @@ function Layout({ children }) {
     <>
       <Header />
       <hr />
-      <Outlet />
+      <div
+        className="mx-auto p-10"
+        style={{
+          maxWidth: "80rem",
+        }}
+      >
+        <Outlet />
+      </div>
       <Footer />
     </>
   );
