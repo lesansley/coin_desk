@@ -1,15 +1,21 @@
 import React from "react";
+import { Routes, Route } from "react-router-dom";
+
 import Layout from "./components/layout";
-import Main from "./pages/main";
+import Dashboard from "./pages/dashboard";
 import Details from "./pages/details";
+import ErrorPage from "./pages/error-page";
 
 function App() {
   return (
     <div className="App">
-      <Layout>
-        <Main />
-        <Details />
-      </Layout>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Dashboard />} />
+          <Route path="details" element={<Details />} />
+          <Route path="*" element={<ErrorPage />} />
+        </Route>
+      </Routes>
     </div>
   );
 }
