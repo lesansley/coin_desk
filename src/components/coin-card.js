@@ -4,19 +4,32 @@ import {
   CardBody,
   CardTitle,
   CardSubtitle,
-  Col,
   Button,
   ListGroup,
   ListGroupItem,
 } from "reactstrap";
 
 function CoinCard(props) {
-  const { image, name, marketCap, price, symbol, volume, high, low } = props;
+  const {
+    image,
+    name,
+    marketCap,
+    price,
+    symbol,
+    volume,
+    high,
+    low,
+    change,
+    onClick,
+  } = props;
+
+  const increase = change < 0;
   return (
     <div className="m-5">
       <Card
+        key={symbol}
         style={{
-          width: "15rem",
+          width: "16rem",
         }}
       >
         <img
@@ -31,14 +44,21 @@ function CoinCard(props) {
           </CardSubtitle>
         </CardBody>
         <ListGroup flush>
-          <ListGroupItem>Price: {price}</ListGroupItem>
+          <ListGroupItem>
+            Price: {price}{" "}
+            <span className={`${increase ? "text-danger" : "text-success"}`}>
+              ({change}%)
+            </span>
+          </ListGroupItem>
           <ListGroupItem>Market Cap: {marketCap}</ListGroupItem>
           <ListGroupItem>Volume: {volume}</ListGroupItem>
           <ListGroupItem>24h Low: {low}</ListGroupItem>
           <ListGroupItem>24h High: {high}</ListGroupItem>
         </ListGroup>
         <CardBody>
-          <Button>View details</Button>
+          <Button name={symbol} onClick={onClick}>
+            View details
+          </Button>
         </CardBody>
       </Card>
     </div>

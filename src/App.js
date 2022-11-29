@@ -14,7 +14,7 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Dashboard />} />
           <Route
-            path="details"
+            path="coin/:id"
             element={
               <React.Suspense fallback={<>...</>}>
                 <Details />
