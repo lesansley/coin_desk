@@ -3,8 +3,9 @@ import { Routes, Route } from "react-router-dom";
 
 import Layout from "./components/layout";
 import Dashboard from "./pages/dashboard";
-import Details from "./pages/details";
 import ErrorPage from "./pages/error-page";
+
+const Details = React.lazy(() => import("./pages/details"));
 
 function App() {
   return (
@@ -12,7 +13,14 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Dashboard />} />
-          <Route path="details" element={<Details />} />
+          <Route
+            path="details"
+            element={
+              <React.Suspense fallback={<>...</>}>
+                <Details />
+              </React.Suspense>
+            }
+          />
           <Route path="*" element={<ErrorPage />} />
         </Route>
       </Routes>

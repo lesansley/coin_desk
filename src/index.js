@@ -1,16 +1,21 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { SWRConfig } from "swr";
 import { BrowserRouter } from "react-router-dom";
 
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
+const fetcher = (...args) => fetch(...args).then((res) => res.json());
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <App />
+      <SWRConfig value={{ fetcher }}>
+        <App />
+      </SWRConfig>
     </BrowserRouter>
   </React.StrictMode>
 );
