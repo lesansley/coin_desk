@@ -8,6 +8,11 @@ import {
   ListGroup,
   ListGroupItem,
 } from "reactstrap";
+import { Sparklines, SparklinesLine } from "react-sparklines";
+import { formatNumber } from "../helpers";
+
+//TODO: Place in useContext
+const CURRENCY = "zar";
 
 function CoinCard(props) {
   const {
@@ -20,9 +25,9 @@ function CoinCard(props) {
     high,
     low,
     change,
+    sparkline,
     onClick,
   } = props;
-
   const increase = change < 0;
   return (
     <div className="m-5">
@@ -32,11 +37,14 @@ function CoinCard(props) {
           width: "16rem",
         }}
       >
-        <img
-          className="img-fluid img-thumbnail"
-          alt={`${name} logo`}
-          src={image}
-        />
+        <Button color="link" onClick={onClick}>
+          <img
+            className="img-fluid img-thumbnail"
+            alt={`${name} logo`}
+            src={image}
+            name={symbol}
+          />
+        </Button>
         <CardBody>
           <CardTitle tag="h5">{name}</CardTitle>
           <CardSubtitle className="mb-2 text-muted" tag="h6">
@@ -45,15 +53,22 @@ function CoinCard(props) {
         </CardBody>
         <ListGroup flush>
           <ListGroupItem>
-            Price: {price}{" "}
-            <span className={`${increase ? "text-danger" : "text-success"}`}>
+            Price: {formatNumber(price, CURRENCY)}{" "}
+            <div className={`${increase ? "text-danger" : "text-success"}`}>
               ({change}%)
-            </span>
+            </div>
           </ListGroupItem>
-          <ListGroupItem>Market Cap: {marketCap}</ListGroupItem>
-          <ListGroupItem>Volume: {volume}</ListGroupItem>
-          <ListGroupItem>24h Low: {low}</ListGroupItem>
-          <ListGroupItem>24h High: {high}</ListGroupItem>
+          <ListGroupItem>
+            <Sparklines data={sparkline}>
+              <SparklinesLine color="blue" />
+            </Sparklines>
+          </ListGroupItem>
+          <ListGroupItem>Market Cap: {formatNumber(marketCap)}</ListGroupItem>
+          <ListGroupItem>Volume: {formatNumber(volume)}</ListGroupItem>
+          <ListGroupItem>24h Low: {formatNumber(low, CURRENCY)}</ListGroupItem>
+          <ListGroupItem>
+            24h High: {formatNumber(high, CURRENCY)}
+          </ListGroupItem>
         </ListGroup>
         <CardBody>
           <Button name={symbol} onClick={onClick}>
