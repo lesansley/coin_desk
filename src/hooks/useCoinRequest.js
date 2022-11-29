@@ -12,7 +12,7 @@ export const useCoinRequest = (path) => {
   const url = baseUrl + path;
   const { data, error, mutate, size, setSize, isValidating } = useSWRInfinite(
     (index) => `${url}&per_page=${perPage}&page=${index + 1}`,
-    { refreshInterval: refreshInterval }
+    { refreshInterval: refreshInterval, revalidateAll: true }
   );
   console.log(data);
   return { data, error, mutate, size, setSize, isValidating };
