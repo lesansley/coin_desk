@@ -16,6 +16,7 @@ const CURRENCY = "zar";
 
 function CoinCard(props) {
   const {
+    id,
     image,
     name,
     marketCap,
@@ -42,7 +43,7 @@ function CoinCard(props) {
             className="img-fluid img-thumbnail"
             alt={`${name} logo`}
             src={image}
-            name={symbol}
+            name={id}
           />
         </Button>
         <CardBody>
@@ -71,7 +72,7 @@ function CoinCard(props) {
           </ListGroupItem>
         </ListGroup>
         <CardBody>
-          <Button name={symbol} onClick={onClick}>
+          <Button name={id} onClick={onClick}>
             View details
           </Button>
         </CardBody>
