@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { ButtonGroup, Button } from "reactstrap";
 import {
   AreaChart,
   Area,
@@ -17,14 +18,29 @@ import useCoinMarketRequest from "../hooks/useCoinMarketRequest";
 function CoinChart() {
   const [duration, setDuration] = useState("max");
   const coin = useParams();
-
   const { data } = useCoinMarketRequest(coin.id, duration);
   const formattedData = formatRawGraphData(data);
-
+  function handleClick(e) {
+    const val = e.target.value;
+    setDuration(val);
+  }
   return (
     <div>
-      <></>
-      <h4>A demo of synchronized AreaCharts</h4>
+      <div>
+        <ButtonGroup className="my-2" size="sm">
+          <Button value="1" onClick={handleClick}>
+            1 day
+          </Button>
+          <Button>7 days</Button>
+          <Button>1 month</Button>
+          <Button>6 months</Button>
+          <Button>1 year</Button>
+          <Button>5 years</Button>
+          <Button>10 years</Button>
+          <Button>Max</Button>
+        </ButtonGroup>
+      </div>
+      <h4>Market data for {coin.id}</h4>
       <LineChart
         width={500}
         height={250}

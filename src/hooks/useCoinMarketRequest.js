@@ -9,7 +9,6 @@ export const useCoinMarketRequest = (coin, duration) => {
   if (!coin) {
     throw new Error("Path is required");
   }
-  console.log("coin", coin);
   const CURRENCY = "zar";
   const queryObj = {
     vs_currency: CURRENCY,
