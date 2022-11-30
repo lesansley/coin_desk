@@ -5,7 +5,7 @@ import Layout from "./components/layout";
 import Dashboard from "./pages/dashboard";
 import ErrorPage from "./pages/error-page";
 
-const Details = React.lazy(() => import("./pages/details"));
+const Coin = React.lazy(() => import("./pages/coin"));
 
 function App() {
   return (
@@ -17,7 +17,7 @@ function App() {
             path="coin/:id"
             element={
               <React.Suspense fallback={<>...</>}>
-                <Details />
+                <Coin />
               </React.Suspense>
             }
           />

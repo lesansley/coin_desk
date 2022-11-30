@@ -17,7 +17,6 @@ const orderBy = [
 
 function Dashboard() {
   const [order, setOrder] = useState("market_cap_desc");
-  const [currency, setCurrency] = useState("zar");
 
   return (
     <>
@@ -25,7 +24,7 @@ function Dashboard() {
 
       {/* Currency db */}
       {/* OrderBy */}
-      <CoinDeck order={order} currency={currency} />
+      <CoinDeck order={order} />
     </>
   );
 }

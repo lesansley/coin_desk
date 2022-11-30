@@ -1,20 +1,25 @@
-import useSWRInfinite from "swr/infinite";
+import useSWR from "swr";
 
-//TODO: Put into a config file
-const baseUrl = "https://api.coingecko.com/api/v3";
-const refreshInterval = 15000;
-const perPage = 12;
+import { BASE_URL, REFRESH_INTERVAL } from "../config";
 
-export const useCoinRequest = (path) => {
-  if (!path) {
+export const useCoinRequest = (coin) => {
+  if (!coin) {
     throw new Error("Path is required");
   }
-  const url = baseUrl + path;
-  const { data, error, mutate, size, setSize, isValidating } = useSWRInfinite(
-    (index) => `${url}&per_page=${perPage}&page=${index + 1}`,
-    { refreshInterval: refreshInterval, revalidateAll: true }
+  const queryObj = {
+    localization: false,
+    tickers: true,
+    market_data: true,
+    community_data: false,
+    developer_data: false,
+    sparkline: true,
+  };
+  const queryStr = "?" + new URLSearchParams(queryObj).toString();
+  const url = `${BASE_URL}/coins/${coin}${queryStr}`;
+  const { data, error, mutate, size, setSize, isValidating } = useSWR(
+    () => url,
+    { refreshInterval: REFRESH_INTERVAL }
   );
-  console.log(data);
   return { data, error, mutate, size, setSize, isValidating };
 };
 
