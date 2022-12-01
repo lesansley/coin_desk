@@ -1,17 +1,15 @@
 import useSWR from "swr";
 
 import { BASE_URL } from "../config";
-
-//TODO: Place in useContext
-const CURRENCY = "zar";
+import useCurrencyStore from "./useCurrencyStore";
 
 export const useCoinMarketRequest = (coin, duration) => {
+  const currency = useCurrencyStore((state) => state.currency);
   if (!coin) {
     throw new Error("Path is required");
   }
-  const CURRENCY = "zar";
   const queryObj = {
-    vs_currency: CURRENCY,
+    vs_currency: currency,
     days: duration,
   };
   const queryStr = "?" + new URLSearchParams(queryObj).toString();

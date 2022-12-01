@@ -1,12 +1,13 @@
 import useSWRInfinite from "swr/infinite";
 import * as config from "../config";
+import useCurrencyStore from "./useCurrencyStore";
 
 const { BASE_URL, REFRESH_INTERVAL, RESULTS_PER_PAGE } = config;
-//TODO: Place in useContext
-const CURRENCY = "zar";
-export const useAllCoinRequest = (order = "market_cap_desc") => {
+
+const useAllCoinRequest = (order = "market_cap_desc") => {
+  const currency = useCurrencyStore((state) => state.currency);
   const queryObj = {
-    vs_currency: CURRENCY,
+    vs_currency: currency,
     order,
     sparkline: true,
   };

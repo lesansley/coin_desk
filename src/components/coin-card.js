@@ -10,11 +10,10 @@ import {
 } from "reactstrap";
 import { Sparklines, SparklinesLine } from "react-sparklines";
 import { formatNumber } from "../helpers";
-
-//TODO: Place in useContext
-const CURRENCY = "zar";
+import useCurrencyStore from "../hooks/useCurrencyStore";
 
 function CoinCard(props) {
+  const currency = useCurrencyStore((state) => state.currency);
   const {
     id,
     image,
@@ -54,7 +53,7 @@ function CoinCard(props) {
         </CardBody>
         <ListGroup flush>
           <ListGroupItem>
-            Price: {formatNumber(price, CURRENCY)}{" "}
+            Price: {formatNumber(price, currency)}{" "}
             <div className={`${increase ? "text-danger" : "text-success"}`}>
               ({change}%)
             </div>
@@ -66,9 +65,9 @@ function CoinCard(props) {
           </ListGroupItem>
           <ListGroupItem>Market Cap: {formatNumber(marketCap)}</ListGroupItem>
           <ListGroupItem>Volume: {formatNumber(volume)}</ListGroupItem>
-          <ListGroupItem>24h Low: {formatNumber(low, CURRENCY)}</ListGroupItem>
+          <ListGroupItem>24h Low: {formatNumber(low, currency)}</ListGroupItem>
           <ListGroupItem>
-            24h High: {formatNumber(high, CURRENCY)}
+            24h High: {formatNumber(high, currency)}
           </ListGroupItem>
         </ListGroup>
         <CardBody>
