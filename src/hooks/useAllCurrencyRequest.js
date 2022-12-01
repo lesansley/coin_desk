@@ -1,5 +1,4 @@
 import useSWR from "swr";
-
 import { BASE_URL } from "../config";
 
 export const useAllCurrencyRequest = () => {
