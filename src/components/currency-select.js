@@ -1,19 +1,22 @@
 import React from "react";
 import { UncontrolledDropdown, DropdownToggle, DropdownMenu } from "reactstrap";
 import useStore from "../hooks/useStore";
-import CurrencyList from "./currency-list";
+import SelectListItems from "./select-list-items";
 import useAllCurrencyRequest from "../hooks/useAllCurrencyRequest";
 import { DEFAULT_CURRENCY, PRIORITY_CURRENCIES_ARRAY } from "../config";
 
 function CurrencySelect() {
-  let currencies = [DEFAULT_CURRENCY];
+  let currencyList = [DEFAULT_CURRENCY];
   const { currency, setCurrency } = useStore();
-  const getCurrencies = useAllCurrencyRequest();
+  const getCurrencyList = useAllCurrencyRequest();
 
-  if (getCurrencies.data) {
-    const { data } = getCurrencies;
+  if (getCurrencyList.data) {
+    let { data } = getCurrencyList;
     data.sort();
-    currencies = PRIORITY_CURRENCIES_ARRAY.concat(data);
+    data = PRIORITY_CURRENCIES_ARRAY.concat(data);
+    currencyList = data.map((item) => {
+      return { item: item.toUpperCase() };
+    });
   }
 
   function handleClick(e) {
@@ -32,11 +35,7 @@ function CurrencySelect() {
           overflowX: "hidden",
         }}
       >
-        <CurrencyList
-          currency={currency}
-          handleClick={handleClick}
-          currencies={currencies}
-        />
+        <SelectListItems handleClick={handleClick} list={currencyList} />
       </DropdownMenu>
     </UncontrolledDropdown>
   );
