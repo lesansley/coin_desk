@@ -1,10 +1,10 @@
 import useSWR from "swr";
 
 import { BASE_URL } from "../config";
-import useCurrencyStore from "./useCurrencyStore";
+import useStore from "./useStore";
 
 export const useCoinMarketRequest = (coin, duration) => {
-  const { currency } = useCurrencyStore();
+  const { currency } = useStore();
   if (!coin) {
     throw new Error("Path is required");
   }

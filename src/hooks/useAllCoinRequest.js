@@ -1,11 +1,11 @@
 import useSWRInfinite from "swr/infinite";
 import * as config from "../config";
-import useCurrencyStore from "./useCurrencyStore";
+import useStore from "./useStore";
 
 const { BASE_URL, REFRESH_INTERVAL, RESULTS_PER_PAGE } = config;
 
 const useAllCoinRequest = (order = "market_cap_desc") => {
-  const { currency } = useCurrencyStore();
+  const { currency } = useStore();
   const queryObj = {
     vs_currency: currency,
     order,

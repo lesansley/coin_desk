@@ -10,10 +10,10 @@ import {
 } from "reactstrap";
 import { Sparklines, SparklinesLine } from "react-sparklines";
 import { formatNumber } from "../helpers";
-import useCurrencyStore from "../hooks/useCurrencyStore";
+import useStore from "../hooks/useStore";
 
 function CoinCard(props) {
-  const { currency } = useCurrencyStore();
+  const { currency } = useStore();
   const {
     id,
     image,

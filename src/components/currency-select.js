@@ -1,13 +1,13 @@
 import React from "react";
 import { UncontrolledDropdown, DropdownToggle, DropdownMenu } from "reactstrap";
-import useCurrencyStore from "../hooks/useCurrencyStore";
+import useStore from "../hooks/useStore";
 import CurrencyList from "./currency-list";
 import useAllCurrencyRequest from "../hooks/useAllCurrencyRequest";
 import { DEFAULT_CURRENCY, PRIORITY_CURRENCIES_ARRAY } from "../config";
 
 function CurrencySelect() {
   let currencies = [DEFAULT_CURRENCY];
-  const { currency, setCurrency } = useCurrencyStore();
+  const { currency, setCurrency } = useStore();
   const getCurrencies = useAllCurrencyRequest();
 
   if (getCurrencies.data) {
