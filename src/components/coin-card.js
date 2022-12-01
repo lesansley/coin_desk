@@ -13,7 +13,7 @@ import { formatNumber } from "../helpers";
 import useCurrencyStore from "../hooks/useCurrencyStore";
 
 function CoinCard(props) {
-  const currency = useCurrencyStore((state) => state.currency);
+  const { currency } = useCurrencyStore();
   const {
     id,
     image,

@@ -5,7 +5,7 @@ import useCurrencyStore from "./useCurrencyStore";
 const { BASE_URL, REFRESH_INTERVAL, RESULTS_PER_PAGE } = config;
 
 const useAllCoinRequest = (order = "market_cap_desc") => {
-  const currency = useCurrencyStore((state) => state.currency);
+  const { currency } = useCurrencyStore();
   const queryObj = {
     vs_currency: currency,
     order,

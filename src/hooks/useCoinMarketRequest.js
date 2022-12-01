@@ -4,7 +4,7 @@ import { BASE_URL } from "../config";
 import useCurrencyStore from "./useCurrencyStore";
 
 export const useCoinMarketRequest = (coin, duration) => {
-  const currency = useCurrencyStore((state) => state.currency);
+  const { currency } = useCurrencyStore();
   if (!coin) {
     throw new Error("Path is required");
   }
