@@ -30,13 +30,8 @@ function CoinCard(props) {
   } = props;
   const increase = change < 0;
   return (
-    <div className="m-5">
-      <Card
-        key={symbol}
-        style={{
-          width: "16rem",
-        }}
-      >
+    <div>
+      <Card key={symbol}>
         <Button color="link" onClick={onClick}>
           <img
             className="img-fluid img-thumbnail"
