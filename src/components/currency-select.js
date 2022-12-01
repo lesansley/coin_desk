@@ -25,7 +25,13 @@ function CurrencySelect() {
       <DropdownToggle nav caret>
         Currency - {currency.toUpperCase()}
       </DropdownToggle>
-      <DropdownMenu>
+      <DropdownMenu
+        style={{
+          height: "auto",
+          maxHeight: "200px",
+          overflowX: "hidden",
+        }}
+      >
         <CurrencyList
           currency={currency}
           handleClick={handleClick}
