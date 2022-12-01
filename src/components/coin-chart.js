@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import { ButtonGroup, Button } from "reactstrap";
+import { ButtonGroup, Button, Spinner } from "reactstrap";
 import {
   AreaChart,
   Area,
@@ -18,7 +18,9 @@ import useCoinMarketRequest from "../hooks/useCoinMarketRequest";
 function CoinChart() {
   const [duration, setDuration] = useState("max");
   const coin = useParams();
-  const { data } = useCoinMarketRequest(coin.id, duration);
+  const { data, error } = useCoinMarketRequest(coin.id, duration);
+  if (error) return <h3>Oops. Something went wrong!</h3>;
+  if (!data) return <Spinner>Loading...</Spinner>;
   const formattedData = formatRawGraphData(data);
   function handleClick(e) {
     const val = e.target.value;

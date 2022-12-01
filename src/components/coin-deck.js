@@ -1,16 +1,19 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { Button, Spinner, Row, Col } from "reactstrap";
+import { Button, Spinner, Row, Col, Container } from "reactstrap";
 import CoinCard from "./coin-card";
+import PageLoading from "./page-loading";
 import useAllCoinRequest from "../hooks/useAllCoinRequest";
-import { RESULTS_PER_PAGE } from "../config";
+import { RESULTS_PER_PAGE, DEFAULT_SORT_ORDER } from "../config";
+import OrderBySelect from "./order-by-select";
 
-function CoinDeck({ order }) {
+function CoinDeck() {
+  const [order, setOrder] = React.useState(DEFAULT_SORT_ORDER);
   const navigate = useNavigate();
   const result = useAllCoinRequest(order);
   const { data, error, size, setSize, isValidating } = result;
   if (error) return <h3>Oops. Something went wrong!</h3>;
-  if (!data) return <Spinner>Loading...</Spinner>;
+  if (!data) return <PageLoading />;
 
   const coins = data ? [].concat(...data) : [];
   const isLoadingInitialData = !data && !error;
@@ -22,15 +25,23 @@ function CoinDeck({ order }) {
     isEmpty || (data && data[data.length - 1]?.length < RESULTS_PER_PAGE);
   const isRefreshing = isValidating && data && data.length === size;
 
+  const handleOrderSelect = (e) => {
+    const value = e.target.value;
+    setOrder(value);
+  };
+
   const handleClick = (e) => {
     navigate(`/coin/${e.target.name}`);
   };
 
   return (
-    <>
-      <h3>Coin Deck</h3>
+    <Container>
+      <h1>Coin Deck</h1>
       <div style={{ fontSize: "10px" }}>
         Last updated: {Date(coins[0].update)}
+      </div>
+      <div>
+        <OrderBySelect handleClick={handleOrderSelect} order={order} />
       </div>
       <Row lg="4" md="3" sm="2" xs="1">
         {coins.map((coin) => {
@@ -55,18 +66,23 @@ function CoinDeck({ order }) {
           );
         })}
       </Row>
-
-      <Button
-        disabled={isLoadingMore || isReachingEnd || isRefreshing}
-        onClick={() => setSize(size + 1)}
-      >
-        {isLoadingMore
-          ? "loading..."
-          : isReachingEnd
-          ? "no more coins"
-          : "load more"}
-      </Button>
-    </>
+      <Row>
+        <Col>
+          <Button
+            className="ml-10 mr-10"
+            style={{ width: "100%" }}
+            disabled={isLoadingMore || isReachingEnd || isRefreshing}
+            onClick={() => setSize(size + 1)}
+          >
+            {isLoadingMore
+              ? "loading..."
+              : isReachingEnd
+              ? "no more coins"
+              : "load more"}
+          </Button>
+        </Col>
+      </Row>
+    </Container>
   );
 }
 
