@@ -1,5 +1,6 @@
 import React from "react";
 import { ethers } from "ethers";
+import { Row, Col, Table } from "reactstrap";
 
 function MetaMask() {
   const [state, setState] = React.useState({
@@ -8,20 +9,21 @@ function MetaMask() {
   });
 
   const getWallet = React.useCallback(async () => {
-    const add = await window.ethereum.request({
+    const getAddress = await window.ethereum.request({
       method: "eth_requestAccounts",
     });
-    console.log(add);
-    const bal = await window.ethereum.request({
+    const getBalance = await window.ethereum.request({
       method: "eth_getBalance",
-      params: [add[0], "latest"],
+      params: [getAddress[0], "latest"],
     });
-    return { address: add[0], balance: bal };
+    return {
+      address: getAddress[0],
+      balance: ethers.utils.formatEther(getBalance),
+    };
   }, []);
 
   React.useEffect(() => {
     if (window.ethereum) {
-      console.log("Metamask extension installed");
       getWallet().then(setState);
     } else {
       alert("Install metamask extension!!");
@@ -29,10 +31,33 @@ function MetaMask() {
   }, [getWallet]);
 
   return (
-    <>
-      <div>{state.address}</div>
-      <div>{state.balance}</div>
-    </>
+    <div className="d-none d-md-block">
+      <Table className="table table-sm">
+        <thead>
+          <tr>
+            <th colspan="2">MetaMask Wallet</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>
+              <small>Address</small>
+            </th>
+            <td>
+              <small>{state.address}</small>
+            </td>
+          </tr>
+          <tr>
+            <th>
+              <small>Balance</small>
+            </th>
+            <td>
+              <small>{state.balance} ether</small>
+            </td>
+          </tr>
+        </tbody>
+      </Table>
+    </div>
   );
 }
 
