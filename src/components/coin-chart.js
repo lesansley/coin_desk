@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import { ButtonGroup, Button, Spinner } from "reactstrap";
+import { ButtonGroup } from "reactstrap";
 import {
   AreaChart,
   Area,
@@ -12,9 +12,10 @@ import {
   Tooltip,
   Brush,
 } from "recharts";
-import { DEFAULT_CHART_DURATION } from "../config";
+import { DEFAULT_CHART_DURATION, CHART_DURATION_ARRAY } from "../config";
 import formatRawGraphData from "../helpers/format-raw-graph-data";
 import useCoinMarketChartRequest from "../hooks/useCoinMarketChartRequest";
+import ButtonListItems from "./button-list-items";
 
 function CoinChart() {
   const [duration, setDuration] = useState(DEFAULT_CHART_DURATION);
@@ -24,57 +25,20 @@ function CoinChart() {
 
   const formattedData = formatRawGraphData(data);
   function handleClick(e) {
+    console.log(e);
     const val = e.target.value;
     setDuration(val);
   }
+
   return (
     <div>
       <div>
         <ButtonGroup className="my-2" size="sm">
-          <Button value="1" onClick={handleClick} disabled={duration === "1"}>
-            1 day
-          </Button>
-          <Button value="7" onClick={handleClick} disabled={duration === "7"}>
-            7 days
-          </Button>
-          <Button value="30" onClick={handleClick} disabled={duration === "30"}>
-            1 month
-          </Button>
-          <Button
-            value="180"
+          <ButtonListItems
+            buttons={CHART_DURATION_ARRAY}
             onClick={handleClick}
-            disabled={duration === "180"}
-          >
-            6 months
-          </Button>
-          <Button
-            value="365"
-            onClick={handleClick}
-            disabled={duration === "365"}
-          >
-            1 year
-          </Button>
-          <Button
-            value="1825"
-            onClick={handleClick}
-            disabled={duration === "1825"}
-          >
-            5 years
-          </Button>
-          <Button
-            value="3650"
-            onClick={handleClick}
-            disabled={duration === "3650"}
-          >
-            10 years
-          </Button>
-          <Button
-            value="max"
-            onClick={handleClick}
-            disabled={duration === "max"}
-          >
-            Max
-          </Button>
+            duration={duration}
+          />
         </ButtonGroup>
       </div>
       <h4>Market data for {coin.id}</h4>
