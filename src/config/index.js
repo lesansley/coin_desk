@@ -22,13 +22,13 @@ export const ORDER_OPTION_ARRAY = [
   { id_desc: "descending ID" },
   { id_asc: "ascending ID" },
 ];
-export const GRAPH_DURATION_ARRAY = [
-  { 1: "1 day" },
-  { 7: "1 week" },
-  { 30: "1 momth" },
-  { 180: "6 months" },
-  { 365: "1 year" },
-  { 1825: "5 years" },
-  { 3650: "10 years" },
-  { max: "max" },
+export const CHART_DURATION_ARRAY = [
+  { id: "1", value: "1 day" },
+  { id: "7", value: "1 week" },
+  { id: "30", value: "1 month" },
+  { id: "180", value: "6 months" },
+  { id: "365", value: "1 year" },
+  { id: "1825", value: "5 years" },
+  { id: "3650", value: "10 years" },
+  { id: "max", value: "max" },
 ];
