@@ -5,11 +5,11 @@ import SelectListItems from "./select-list-items";
 
 function OrderBySelect({ order, handleClick }) {
   const orderOptionList = ORDER_OPTION_ARRAY;
-
   let orderName = null;
+
   orderOptionList.forEach((item) => {
-    if (Object.hasOwn(item, order)) {
-      orderName = item[order];
+    if (item.id === order) {
+      orderName = item.value;
     }
   });
 

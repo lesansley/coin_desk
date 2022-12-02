@@ -4,11 +4,16 @@ import { Button, Row, Col, Container } from "reactstrap";
 import CoinCard from "./coin-card";
 import PageLoading from "./page-loading";
 import useAllCoinRequest from "../hooks/useAllCoinRequest";
-import { RESULTS_PER_PAGE, DEFAULT_SORT_ORDER } from "../config";
+import {
+  RESULTS_PER_PAGE,
+  DEFAULT_SORT_ORDER,
+  ORDER_OPTION_ARRAY,
+} from "../config";
 import OrderBySelect from "./order-by-select";
 
 function CoinDeck() {
   const [order, setOrder] = React.useState(DEFAULT_SORT_ORDER);
+  const orderArray = ORDER_OPTION_ARRAY;
   const navigate = useNavigate();
   const result = useAllCoinRequest(order);
   const { data, error, size, setSize, isValidating } = result;
@@ -27,6 +32,10 @@ function CoinDeck() {
 
   const handleOrderSelect = (e) => {
     const value = e.target.value;
+    orderArray.forEach((item) => {
+      if (Object.hasOwn(item, value)) {
+      }
+    });
     setOrder(value);
   };
 

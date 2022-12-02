@@ -15,12 +15,12 @@ export const PRIORITY_CURRENCIES_ARRAY = [
   "divider",
 ];
 export const ORDER_OPTION_ARRAY = [
-  { market_cap_desc: "descending market cap" },
-  { market_cap_asc: "ascending market cap" },
-  { volume_desc: "descending volume" },
-  { volume_asc: "ascending volume" },
-  { id_desc: "descending ID" },
-  { id_asc: "ascending ID" },
+  { id: "market_cap_desc", value: "descending market cap" },
+  { id: "market_cap_asc", value: "ascending market cap" },
+  { id: "volume_desc", value: "descending volume" },
+  { id: "volume_asc", value: "ascending volume" },
+  { id: "id_desc", value: "descending ID" },
+  { id: "id_asc", value: "ascending ID" },
 ];
 export const CHART_DURATION_ARRAY = [
   { id: "1", value: "1 day" },
