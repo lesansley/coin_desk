@@ -12,13 +12,14 @@ import {
   Tooltip,
   Brush,
 } from "recharts";
+import { DEFAULT_CHART_DURATION } from "../config";
 import formatRawGraphData from "../helpers/format-raw-graph-data";
-import useCoinMarketRequest from "../hooks/useCoinMarketRequest";
+import useCoinMarketChartRequest from "../hooks/useCoinMarketChartRequest";
 
 function CoinChart() {
-  const [duration, setDuration] = useState("max");
+  const [duration, setDuration] = useState(DEFAULT_CHART_DURATION);
   const coin = useParams();
-  const { data, error } = useCoinMarketRequest(coin.id, duration);
+  const { data, error } = useCoinMarketChartRequest(coin.id, duration);
   if (error) return <h3>Oops. Something went wrong!</h3>;
   if (!data) return <Spinner>Loading...</Spinner>;
   const formattedData = formatRawGraphData(data);
@@ -30,16 +31,50 @@ function CoinChart() {
     <div>
       <div>
         <ButtonGroup className="my-2" size="sm">
-          <Button value="1" onClick={handleClick}>
+          <Button value="1" onClick={handleClick} inactive={duration === "1"}>
             1 day
           </Button>
-          <Button>7 days</Button>
-          <Button>1 month</Button>
-          <Button>6 months</Button>
-          <Button>1 year</Button>
-          <Button>5 years</Button>
-          <Button>10 years</Button>
-          <Button>Max</Button>
+          <Button value="7" onClick={handleClick} inactive={duration === "7"}>
+            7 days
+          </Button>
+          <Button value="30" onClick={handleClick} inactive={duration === "30"}>
+            1 month
+          </Button>
+          <Button
+            value="180"
+            onClick={handleClick}
+            inactive={duration === "180"}
+          >
+            6 months
+          </Button>
+          <Button
+            value="365"
+            onClick={handleClick}
+            inactive={duration === "356"}
+          >
+            1 year
+          </Button>
+          <Button
+            value="1825"
+            onClick={handleClick}
+            inactive={duration === "1825"}
+          >
+            5 years
+          </Button>
+          <Button
+            value="3650"
+            onClick={handleClick}
+            inactive={duration === "3650"}
+          >
+            10 years
+          </Button>
+          <Button
+            value="max"
+            onClick={handleClick}
+            inactive={duration === "max"}
+          >
+            Max
+          </Button>
         </ButtonGroup>
       </div>
       <h4>Market data for {coin.id}</h4>
