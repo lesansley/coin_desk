@@ -1,16 +1,32 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { sanitize } from "dompurify";
 import { Spinner } from "reactstrap";
-import useCoinRequest from "../hooks/useCoinRequest";
+import useStore from "../hooks/useStore";
+import useNewsRequest from "../hooks/useNewsRequest";
 
 function CoinNews() {
+  const [state, setState] = React.useState(null);
+  const [news, setNews] = React.useState([]);
   const coin = useParams();
-  const { data, error } = useCoinRequest(coin.id);
-  if (error) return <h3>Oops. Something went wrong!</h3>;
-  if (!data) return <Spinner>Loading...</Spinner>;
-  const description = data.description.en;
-  return <div dangerouslySetInnerHTML={{ __html: sanitize(description) }} />;
+  const { coinList } = useStore();
+
+  useEffect(() => {
+    coinList.forEach((element) => {
+      if (element.id === coin.id) {
+        setState(element.symbol);
+      }
+    });
+
+    fetch(
+      "https://cryptopanic.com/api/v1/posts/?auth_token=50ee9992b081a3bf092e04aa82963c207378dd65&currencies=btc&kind=news&public=true&regions=en",
+      { method: "GET" }
+    )
+      .then((response) => response.json())
+      .then((data) => setNews(data));
+  }, [coin.id, coinList, setNews]);
+
+  console.log("news", news);
+  return <div>Lastest news for </div>;
 }
 
 export default CoinNews;

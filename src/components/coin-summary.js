@@ -1,19 +1,35 @@
 import React from "react";
-import { useParams } from "react-router-dom";
-import { Container, Col, Row, Spinner, Table } from "reactstrap";
-import useCoinMarketRequest from "../hooks/useCoinMarketRequest";
+import { Container, Col, Row, Table } from "reactstrap";
+import CoinStats from "./coin-stats";
 
-function CoinSummary() {
-  const coin = useParams();
-  const { data, error } = useCoinMarketRequest(coin.id);
-  if (error) return <h3>Oops. Something went wrong!</h3>;
-  if (!data) return <Spinner>Loading...</Spinner>;
-  console.log("CoinSummary", data);
-
+function CoinSummary(props) {
+  const {
+    market_cap_rank,
+    image,
+    current_price,
+    high_24h,
+    low_24h,
+    ath,
+    atl,
+    total_supply,
+    total_volume,
+    last_updated,
+    market_cap,
+    name,
+  } = props;
   return (
     <Container>
       <Row lg="2" md="2" xs="1">
-        <Col></Col>
+        <Col>
+          <CoinStats
+            price={current_price}
+            image={image}
+            rank={market_cap_rank}
+            update={last_updated}
+            cap={market_cap}
+            name={name}
+          />
+        </Col>
         <Col>
           <Table>
             <thead>
@@ -24,18 +40,22 @@ function CoinSummary() {
             </thead>
             <tbody>
               <tr>
-                <th>100/200</th>
-                <th>50/300</th>
+                <td>
+                  {high_24h} / {low_24h}
+                </td>
+                <td>
+                  {ath} / {atl}
+                </td>
               </tr>
             </tbody>
             <thead>
               <tr>
-                <th>24h high/low</th>
-                <th>Highest/Lowest</th>
+                <th>Supply</th>
+                <th>Volume</th>
               </tr>
               <tr>
-                <th>24h high/low</th>
-                <th>Highest/Lowest</th>
+                <td>{total_supply}</td>
+                <td>{total_volume}</td>
               </tr>
             </thead>
             <tbody></tbody>
