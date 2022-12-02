@@ -35,7 +35,7 @@ function Coin() {
   }, [getMarketData]);
 
   return (
-    <Container>
+    <>
       <div>
         <Button
           onClick={() => {
@@ -45,29 +45,26 @@ function Coin() {
           Go back to dashboard
         </Button>
       </div>
-      <h1>
-        {coin.id.toUpperCase()}{" "}
-        {state ? ` || ${state.symbol.toUpperCase()}` : ""}
-      </h1>
-      <Row xs="1">
-        <Col>
-          <CoinSummary {...state} />
-        </Col>
-      </Row>
-      <Row lg="12" sm="1">
-        <Col lg="7">
-          <CoinChart />
-        </Col>
-        <Col lg="5">
-          <CoinInfo coin={coin.id.toUpperCase()} />
-        </Col>
-      </Row>
-      {/* <Row>
-        <Col>
-          <CoinNews />
-        </Col>
-      </Row> */}
-    </Container>
+      <Container>
+        <h1>
+          {coin.id.toUpperCase()}{" "}
+          {state ? ` || ${state.symbol.toUpperCase()}` : ""}
+        </h1>
+        <Row xs="1">
+          <Col>
+            <CoinSummary {...state} />
+          </Col>
+        </Row>
+        <Row lg="12" sm="1">
+          <Col lg="7">
+            <CoinChart />
+          </Col>
+          <Col lg="5">
+            <CoinInfo coin={coin.id.toUpperCase()} />
+          </Col>
+        </Row>
+      </Container>
+    </>
   );
 }
 
