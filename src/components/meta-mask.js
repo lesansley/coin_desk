@@ -16,6 +16,7 @@ function MetaMask() {
       method: "eth_getBalance",
       params: [getAddress[0], "latest"],
     });
+
     return {
       address: getAddress[0],
       balance: ethers.utils.formatEther(getBalance),
