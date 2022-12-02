@@ -45,7 +45,10 @@ function Coin() {
           Go back to dashboard
         </Button>
       </div>
-      <h1>{coin.id.toUpperCase()} Coin Page</h1>
+      <h1>
+        {coin.id.toUpperCase()}{" "}
+        {state ? ` || ${state.symbol.toUpperCase()}` : ""}
+      </h1>
       <Row xs="1">
         <Col>
           <CoinSummary {...state} />
