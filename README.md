@@ -1,6 +1,6 @@
 # Project specifications
 
-## Create an application which displays live cryptocurrency prices.
+## Create an application which displays live cryptocurrency prices
 
 You are required to develop an application which fetches live cryptocurrency prices, using the CoinGecko API, and display it
 to the user through an intuitive UI. There are no strict design guidelines, or design resource files. You are expected to
