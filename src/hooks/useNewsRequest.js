@@ -11,10 +11,10 @@ export const useNewsRequest = (coin) => {
   };
   const queryStr = "?" + new URLSearchParams(queryObj).toString();
   const url = `${BASE_URL_NEWS}${queryStr}`;
-  const { data, error, size, setSize, isValidating } = useSWRInfinite(
+  const { data, error } = useSWRInfinite(
     (index) => `${url}&per_page=${RESULTS_PER_PAGE}&page=${index + 1}`
   );
-  return { data, error, size, setSize, isValidating };
+  return { data, error };
 };
 
 export default useNewsRequest;
