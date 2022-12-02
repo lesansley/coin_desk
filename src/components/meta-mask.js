@@ -1,6 +1,6 @@
 import React from "react";
 import { ethers } from "ethers";
-import { Row, Col, Table } from "reactstrap";
+import { Table } from "reactstrap";
 
 function MetaMask() {
   const [state, setState] = React.useState({
@@ -35,7 +35,7 @@ function MetaMask() {
       <Table className="table table-sm">
         <thead>
           <tr>
-            <th colspan="2">MetaMask Wallet</th>
+            <th colSpan="2">MetaMask Wallet</th>
           </tr>
         </thead>
         <tbody>
