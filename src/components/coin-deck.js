@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { Button, Spinner, Row, Col, Container } from "reactstrap";
+import { Button, Row, Col, Container } from "reactstrap";
 import CoinCard from "./coin-card";
 import PageLoading from "./page-loading";
 import useAllCoinRequest from "../hooks/useAllCoinRequest";
@@ -69,7 +69,7 @@ function CoinDeck() {
       <Row>
         <Col>
           <Button
-            className="ml-10 mr-10"
+            className="pt-10 mt-10 ml-10 mr-10"
             style={{ width: "100%" }}
             disabled={isLoadingMore || isReachingEnd || isRefreshing}
             onClick={() => setSize(size + 1)}
