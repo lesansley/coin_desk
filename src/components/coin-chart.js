@@ -21,7 +21,7 @@ function CoinChart() {
   const coin = useParams();
   const { data, error } = useCoinMarketChartRequest(coin.id, duration);
   if (error) return <h3>Oops. Something went wrong!</h3>;
-  if (!data) return <Spinner>Loading...</Spinner>;
+
   const formattedData = formatRawGraphData(data);
   function handleClick(e) {
     const val = e.target.value;
@@ -31,47 +31,47 @@ function CoinChart() {
     <div>
       <div>
         <ButtonGroup className="my-2" size="sm">
-          <Button value="1" onClick={handleClick} inactive={duration === "1"}>
+          <Button value="1" onClick={handleClick} disabled={duration === "1"}>
             1 day
           </Button>
-          <Button value="7" onClick={handleClick} inactive={duration === "7"}>
+          <Button value="7" onClick={handleClick} disabled={duration === "7"}>
             7 days
           </Button>
-          <Button value="30" onClick={handleClick} inactive={duration === "30"}>
+          <Button value="30" onClick={handleClick} disabled={duration === "30"}>
             1 month
           </Button>
           <Button
             value="180"
             onClick={handleClick}
-            inactive={duration === "180"}
+            disabled={duration === "180"}
           >
             6 months
           </Button>
           <Button
             value="365"
             onClick={handleClick}
-            inactive={duration === "356"}
+            disabled={duration === "365"}
           >
             1 year
           </Button>
           <Button
             value="1825"
             onClick={handleClick}
-            inactive={duration === "1825"}
+            disabled={duration === "1825"}
           >
             5 years
           </Button>
           <Button
             value="3650"
             onClick={handleClick}
-            inactive={duration === "3650"}
+            disabled={duration === "3650"}
           >
             10 years
           </Button>
           <Button
             value="max"
             onClick={handleClick}
-            inactive={duration === "max"}
+            disabled={duration === "max"}
           >
             Max
           </Button>
