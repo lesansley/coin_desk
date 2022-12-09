@@ -1,12 +1,7 @@
 import React from "react";
-import { Container, Row, Table } from "reactstrap";
-import useStore from "../hooks/useStore";
+import { Container, Table } from "reactstrap";
 
 function CoinStats({ data }) {
-  const { currency } = useStore();
-  console.log(currency);
-  console.log(data.length);
-
   const TableHeader = ({ dataRow }) => {
     const head = [];
     dataRow.map((col, index) => {
