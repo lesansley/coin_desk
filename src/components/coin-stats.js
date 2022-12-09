@@ -1,30 +1,53 @@
 import React from "react";
 import { Container, Row, Table } from "reactstrap";
+import useStore from "../hooks/useStore";
 
-function CoinStats({ name, price, image, rank, update, cap }) {
-  return (
-    <Container>
-      <Row>
-        <img className="img-fluid" src={image} alt={`${name} logo`} />
-      </Row>
-      <Row>
-        <Table>
+function CoinStats({ data }) {
+  const { currency } = useStore();
+  console.log(currency);
+  console.log(data.length);
+
+  const TableHeader = ({ dataRow }) => {
+    const head = [];
+    dataRow.map((col, index) => {
+      return head.push(<th key={index}>{col.head}</th>);
+    });
+
+    return <tr>{head}</tr>;
+  };
+
+  const TableBody = ({ dataRow }) => {
+    const body = [];
+    dataRow.map((col, index) => {
+      body.push(<td key={index}>{col.body}</td>);
+      return <>{body}</>;
+    });
+
+    return <tr>{body}</tr>;
+  };
+
+  const TableRows = ({ rows }) => {
+    const tableRow = [];
+    for (const row in rows) {
+      tableRow.push(
+        <>
           <thead>
-            <tr>
-              <th>Price</th>
-              <th>Ranking</th>
-              <th>Market Cap</th>
-            </tr>
+            <TableHeader dataRow={rows[row]} />
           </thead>
           <tbody>
-            <tr>
-              <td>{price}</td>
-              <td>{rank}</td>
-              <td>{cap}</td>
-            </tr>
+            <TableBody dataRow={rows[row]} />
           </tbody>
-        </Table>
-      </Row>
+        </>
+      );
+    }
+    return tableRow;
+  };
+
+  return (
+    <Container>
+      <Table>
+        <TableRows rows={data} />
+      </Table>
     </Container>
   );
 }

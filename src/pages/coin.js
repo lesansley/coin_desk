@@ -50,6 +50,9 @@ function Coin() {
           {coin.id.toUpperCase()}{" "}
           {state ? ` || ${state.symbol.toUpperCase()}` : ""}
         </h1>
+        <div style={{ fontSize: "10px" }}>
+          Last updated {state ? state.last_updated : ""}
+        </div>
         <Row xs="1">
           <Col>
             <CoinSummary {...state} />
