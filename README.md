@@ -1,5 +1,7 @@
 # Project specifications
 
+The deployed site can be viewed [here](https://master--flourishing-paletas-062476.netlify.app).
+
 ## Create an application which displays live cryptocurrency prices
 
 You are required to develop an application which fetches live cryptocurrency prices, using the CoinGecko API, and display it
