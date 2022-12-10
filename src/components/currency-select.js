@@ -15,7 +15,7 @@ function CurrencySelect() {
     data.sort();
     data = PRIORITY_CURRENCIES_ARRAY.concat(data);
     currencyList = data.map((item) => {
-      return { item: item.toUpperCase() };
+      return { [item]: item.toUpperCase() };
     });
   }
 
