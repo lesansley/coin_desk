@@ -32,7 +32,9 @@ Build the app using ReactJS or React Native
 Use a Git versioning tool. Ensure clear commit messages and version control standards are used
 Your code must compile! Someone from Octoco needs to be able to run your project locally and asses the performance
 All prices should be displayed in ZAR
-Bonus Marks
+
+**Bonus Marks**
+
 The following functionality is optional, but highly recommended if you are applying for an intermediate or senior role.
 You can choose which functionality you want to add, but the more the better!
 
@@ -40,9 +42,9 @@ You can choose which functionality you want to add, but the more the better!
 - Add ability to select compared currency (eg. Coin price in ZAR, USD, BTC, etc.)
 - Caching with React Redux
 - Add historical price data charts. You can choose what datasets you want to chart, for example:
-  Coin price (24hrs, 1 month, 1 year, etc.)
-  Coin market cap (24hrs, 1 month, 1 year, etc.)
-- Trading volume
+  - Coin price (24hrs, 1 month, 1 year, etc.)
+  - Coin market cap (24hrs, 1 month, 1 year, etc.)
+  - Trading volume
 - Ability to set granularity on historical price charts (24hrs, 1 month, 1 year, etc.)
 - Progressive web app (scalable for desktop, tablet and mobile)
 - App is deployed to a hosting service (Github Pages, Firebase, AWS Free EC2 tier, etc.)
