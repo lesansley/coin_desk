@@ -1,17 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { UncontrolledDropdown, DropdownToggle, DropdownMenu } from "reactstrap";
 import { ORDER_OPTION_ARRAY } from "../config";
 import SelectListItems from "./select-list-items";
 
 function OrderBySelect({ order, handleClick }) {
   const orderOptionList = ORDER_OPTION_ARRAY;
-  let orderName = null;
+  const [orderName, setOrderName] = React.useState(null);
 
-  orderOptionList.forEach((item) => {
-    if (item.id === order) {
-      orderName = item.value;
+  useEffect(() => {
+    for (const opt of orderOptionList) {
+      if (opt.hasOwnProperty(order)) setOrderName(opt[order]);
     }
-  });
+  }, [orderOptionList, order]);
 
   return (
     <UncontrolledDropdown nav inNavbar>
