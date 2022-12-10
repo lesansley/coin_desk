@@ -23,9 +23,8 @@ function CoinChart() {
   const { data, error } = useCoinMarketChartRequest(coin.id, duration);
   if (error) return <h3>Oops. Something went wrong!</h3>;
 
-  const formattedData = formatRawGraphData(data);
+  const formattedData = formatRawGraphData(data, duration);
   function handleClick(e) {
-    console.log(e);
     const val = e.target.value;
     setDuration(val);
   }
@@ -58,7 +57,7 @@ function CoinChart() {
         <XAxis dataKey="date" />
         <YAxis />
         <Tooltip />
-        <Line type="monotone" dataKey="prices" stroke="#8884d8" dot={false} />
+        <Line type="monotone" dataKey="Price" stroke="#8884d8" dot={false} />
         <Brush />
       </LineChart>
       <AreaChart
@@ -79,7 +78,7 @@ function CoinChart() {
         <Tooltip />
         <Area
           type="monotone"
-          dataKey="total_volumes"
+          dataKey="Volume"
           stroke="#82ca9d"
           fill="#82ca9d"
         />
@@ -102,7 +101,7 @@ function CoinChart() {
         <Tooltip />
         <Area
           type="monotone"
-          dataKey="market_caps"
+          dataKey="Market Cap"
           stroke="#ffc658"
           fill="#ffc658"
         />

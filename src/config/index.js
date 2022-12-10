@@ -32,3 +32,8 @@ export const CHART_DURATION_ARRAY = [
   { id: "3650", value: "10 years" },
   { id: "max", value: "max" },
 ];
+export const CHART_OPTION_ARRAY = [
+  { prices: "Price" },
+  { total_volumes: "Volume" },
+  { market_caps: "Market Cap" },
+];
