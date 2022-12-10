@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Container, Button, Row, Col } from "reactstrap";
-import useStore from "../hooks/useStore";
+import { useStore } from "../hooks";
 import { BASE_URL } from "../config";
 import CoinInfo from "../components/coin-info";
 import CoinChart from "../components/coin-chart";

@@ -14,7 +14,7 @@ import {
 } from "recharts";
 import { DEFAULT_CHART_DURATION, CHART_DURATION_ARRAY } from "../config";
 import formatRawGraphData from "../helpers/format-raw-graph-data";
-import useCoinMarketChartRequest from "../hooks/useCoinMarketChartRequest";
+import { useCoinMarketChartRequest } from "../hooks";
 import ButtonListItems from "./button-list-items";
 
 function CoinChart() {

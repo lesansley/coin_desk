@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, Col, Row } from "reactstrap";
-import useStore from "../hooks/useStore";
+import { useStore } from "../hooks";
 import CoinStats from "./coin-stats";
 import { formatNumber } from "../helpers";
 

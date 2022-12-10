@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Button, Row, Col, Container } from "reactstrap";
 import CoinCard from "./coin-card";
 import PageLoading from "./page-loading";
-import useAllCoinRequest from "../hooks/useAllCoinRequest";
+import { useAllCoinRequest } from "../hooks";
 import {
   RESULTS_PER_PAGE,
   DEFAULT_SORT_ORDER,

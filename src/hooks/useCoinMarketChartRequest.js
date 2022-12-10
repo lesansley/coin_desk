@@ -1,7 +1,7 @@
 import useSWR from "swr";
 
 import { BASE_URL } from "../config";
-import useStore from "./useStore";
+import { useStore } from "./";
 
 export const useCoinMarketChartRequest = (coin, duration) => {
   const { currency } = useStore();

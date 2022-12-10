@@ -4,7 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import Layout from "./components/layout";
 import Dashboard from "./pages/dashboard";
 import ErrorPage from "./pages/error-page";
-import useStore from "./hooks/useStore";
+import { useStore } from "./hooks";
 
 const Coin = React.lazy(() => import("./pages/coin"));
 

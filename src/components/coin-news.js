@@ -1,8 +1,7 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Spinner } from "reactstrap";
-import useStore from "../hooks/useStore";
-import useNewsRequest from "../hooks/useNewsRequest";
+import { useStore } from "../hooks";
 
 function CoinNews() {
   const [state, setState] = React.useState(null);

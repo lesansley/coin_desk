@@ -2,7 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { sanitize } from "dompurify";
 import { Spinner } from "reactstrap";
-import useCoinRequest from "../hooks/useCoinRequest";
+import { useCoinRequest } from "../hooks";
 
 function CoinInfo() {
   const coin = useParams();
