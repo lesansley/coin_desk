@@ -9,8 +9,8 @@ function formatNumber(val, currency) {
   const formatter = new Intl.NumberFormat(undefined, options);
 
   if (!isNaN(val)) {
-    if (parseInt(val) > 0) return formatter.format(val);
-    return val;
+    if (val > 0) return formatter.format(val);
+    return null;
   } else {
     return null;
   }
