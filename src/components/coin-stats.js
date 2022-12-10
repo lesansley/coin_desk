@@ -14,8 +14,7 @@ function CoinStats({ data }) {
   const TableBody = ({ dataRow }) => {
     const body = [];
     dataRow.map((col, index) => {
-      body.push(<td key={index}>{col.body}</td>);
-      return <>{body}</>;
+      return body.push(<td key={index}>{col.body}</td>);
     });
 
     return <tr>{body}</tr>;
