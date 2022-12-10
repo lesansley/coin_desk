@@ -10,7 +10,7 @@ function formatNumber(val, currency) {
 
   if (!isNaN(val)) {
     if (parseInt(val) > 0) return formatter.format(val);
-    return null;
+    return val;
   } else {
     return null;
   }

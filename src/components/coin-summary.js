@@ -5,21 +5,22 @@ import CoinStats from "./coin-stats";
 import { formatNumber } from "../helpers";
 
 function CoinSummary(props) {
-  const {
-    market_cap_rank,
-    image,
-    current_price,
-    high_24h,
-    low_24h,
-    ath,
-    atl,
-    total_supply,
-    total_volume,
-    last_updated,
-    market_cap,
-    name,
-  } = props;
+  const { market_cap_rank, image, last_updated, name } = props;
 
+  const current_price = props.current_price
+    ? formatNumber(props.current_price)
+    : "--";
+  const high_24h = props.high_24h ? formatNumber(props.high_24h) : "--";
+  const low_24h = props.low_24h ? formatNumber(props.low_24h) : "--";
+  const ath = props.ath ? formatNumber(props.ath) : "--";
+  const atl = props.atl ? formatNumber(props.atl) : "--";
+  const total_supply = props.total_supply
+    ? formatNumber(props.total_supply)
+    : "--";
+  const total_volume = props.total_volume
+    ? formatNumber(props.total_volume)
+    : "--";
+  const market_cap = props.market_cap ? formatNumber(props.market_cap) : "--";
   const { currency } = useStore();
 
   return (
@@ -38,9 +39,9 @@ function CoinSummary(props) {
                     head: "Price",
                     body: `${
                       currency ? currency.toUpperCase() : ""
-                    } ${formatNumber(current_price)}`,
+                    } ${current_price}`,
                   },
-                  { head: "Market Cap", body: `${formatNumber(market_cap)}` },
+                  { head: "Market Cap", body: `${market_cap}` },
                 ],
               ]}
               update={last_updated}
@@ -54,18 +55,16 @@ function CoinSummary(props) {
                 [
                   {
                     head: "24h high/low",
-                    body: `${formatNumber(high_24h)} / ${formatNumber(
-                      low_24h
-                    )}`,
+                    body: `${high_24h} / ${low_24h}`,
                   },
                   {
                     head: "Highest/Lowest",
-                    body: `${formatNumber(ath)} / ${formatNumber(atl)}`,
+                    body: `${ath} / ${atl}`,
                   },
                 ],
                 [
-                  { head: "Supply", body: `${formatNumber(total_supply)}` },
-                  { head: "Volume", body: `${formatNumber(total_volume)}` },
+                  { head: "Supply", body: `${total_supply}` },
+                  { head: "Volume", body: `${total_volume}` },
                 ],
               ]}
             />
