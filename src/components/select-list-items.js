@@ -10,11 +10,7 @@ function SelectListItems({ list, handleClick }) {
           return <DropdownItem key={key + index} divider />;
         } else {
           return (
-            <DropdownItem
-              key={value + index}
-              value={value}
-              onClick={handleClick}
-            >
+            <DropdownItem key={value + index} value={key} onClick={handleClick}>
               {value}
             </DropdownItem>
           );
