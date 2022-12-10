@@ -25,14 +25,14 @@ function CoinStats({ data }) {
     const tableRow = [];
     for (const row in rows) {
       tableRow.push(
-        <>
+        <React.Fragment key={row}>
           <thead>
             <TableHeader dataRow={rows[row]} />
           </thead>
           <tbody>
             <TableBody dataRow={rows[row]} />
           </tbody>
-        </>
+        </React.Fragment>
       );
     }
     return tableRow;
