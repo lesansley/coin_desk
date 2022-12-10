@@ -10,6 +10,7 @@ import {
   ORDER_OPTION_ARRAY,
 } from "../config";
 import OrderBySelect from "./order-by-select";
+import LastUpdated from "./last-updated";
 
 function CoinDeck() {
   const [order, setOrder] = React.useState(DEFAULT_SORT_ORDER);
@@ -46,12 +47,9 @@ function CoinDeck() {
   return (
     <Container>
       <h1>Coin Deck</h1>
-      <div style={{ fontSize: "10px" }}>
-        Last updated: {Date(coins[0].update)}
-      </div>
-      <div>
-        <OrderBySelect handleClick={handleOrderSelect} order={order} />
-      </div>
+      <LastUpdated date={coins[0].update} />
+      <OrderBySelect handleClick={handleOrderSelect} order={order} />
+
       <Row lg="4" md="3" sm="2" xs="1">
         {coins.map((coin) => {
           return (

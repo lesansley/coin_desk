@@ -41,7 +41,6 @@ function CoinSummary(props) {
                   { head: "Market Cap", body: market_cap },
                 ],
               ]}
-              update={last_updated}
             />
           </Row>
         </Col>

@@ -6,9 +6,10 @@ import { BASE_URL } from "../config";
 import CoinInfo from "../components/coin-info";
 import CoinChart from "../components/coin-chart";
 import CoinSummary from "../components/coin-summary";
+import LastUpdated from "../components/last-updated";
 
 function Coin() {
-  const [state, setState] = React.useState(null);
+  const [state, setState] = React.useState();
   const { currency } = useStore();
   const coin = useParams();
   const navigate = useNavigate();
@@ -50,9 +51,7 @@ function Coin() {
           {coin.id.toUpperCase()}{" "}
           {state ? ` || ${state.symbol.toUpperCase()}` : ""}
         </h1>
-        <div style={{ fontSize: "10px" }}>
-          Last updated {state ? state.last_updated : ""}
-        </div>
+        <LastUpdated date={state ? state.last_updated : null} />
         <Row xs="1">
           <Col>
             <CoinSummary {...state} />
