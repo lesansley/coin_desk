@@ -1,6 +1,6 @@
 # Project specifications
 
-The deployed site can be viewed [here](https://master--flourishing-paletas-062476.netlify.app).
+The deployed site can be viewed [here](https://flourishing-paletas-062476.netlify.app).
 
 ## Create an application which displays live cryptocurrency prices
 
