@@ -1,10 +1,11 @@
 import React from "react";
 
 function Footer() {
+  const date = new Date();
   return (
     <div>
       <hr />
-      Footer
+      &copy; Les Ansley {date.getFullYear()}
     </div>
   );
 }
