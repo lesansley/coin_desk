@@ -6,9 +6,9 @@ import { formatNumber } from "../helpers";
 
 function CoinSummary(props) {
   const { market_cap_rank, image, last_updated, name } = props;
-
+  const { currency } = useStore();
   const current_price = props.current_price
-    ? formatNumber(props.current_price)
+    ? formatNumber(props.current_price, currency)
     : "--";
   const high_24h = props.high_24h ? formatNumber(props.high_24h) : "--";
   const low_24h = props.low_24h ? formatNumber(props.low_24h) : "--";
@@ -21,7 +21,6 @@ function CoinSummary(props) {
     ? formatNumber(props.total_volume)
     : "--";
   const market_cap = props.market_cap ? formatNumber(props.market_cap) : "--";
-  const { currency } = useStore();
 
   return (
     <Container>
@@ -37,11 +36,9 @@ function CoinSummary(props) {
                   { head: "Rank", body: market_cap_rank },
                   {
                     head: "Price",
-                    body: `${
-                      currency ? currency.toUpperCase() : ""
-                    } ${current_price}`,
+                    body: current_price,
                   },
-                  { head: "Market Cap", body: `${market_cap}` },
+                  { head: "Market Cap", body: market_cap },
                 ],
               ]}
               update={last_updated}
