@@ -1,3 +1,15 @@
 export default function fetcher(...args) {
-  fetch(...args).then((res) => res.json());
+  fetch(...args)
+    .then((res) => {
+      if (!res.ok) {
+        throw new Error("Network response was not OK");
+      }
+      return res.json();
+    })
+    .catch((error) => {
+      console.error(
+        "There has been a problem with your fetch operation:",
+        error
+      );
+    });
 }
