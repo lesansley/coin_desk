@@ -5,7 +5,7 @@ import CoinStats from "./coin-stats";
 import { formatNumber } from "../helpers";
 
 function CoinSummary(props) {
-  const { market_cap_rank, image, last_updated, name } = props;
+  const { market_cap_rank, image, name } = props;
   const { currency } = useStore();
   const current_price = props.current_price
     ? formatNumber(props.current_price, currency)
@@ -22,6 +22,34 @@ function CoinSummary(props) {
     : "--";
   const market_cap = props.market_cap ? formatNumber(props.market_cap) : "--";
 
+  const primaryTable = [
+    [
+      { head: "Rank", body: market_cap_rank },
+      {
+        head: "Price",
+        body: current_price,
+      },
+      { head: "Market Cap", body: market_cap },
+    ],
+  ];
+
+  const secondaryTable = [
+    [
+      {
+        head: "24h high/low",
+        body: `${high_24h} / ${low_24h}`,
+      },
+      {
+        head: "Highest/Lowest",
+        body: `${ath} / ${atl}`,
+      },
+    ],
+    [
+      { head: "Supply", body: `${total_supply}` },
+      { head: "Volume", body: `${total_volume}` },
+    ],
+  ];
+
   return (
     <Container>
       <Row lg="2" md="2" xs="1">
@@ -30,40 +58,12 @@ function CoinSummary(props) {
             <img className="img-fluid" src={image} alt={`${name} logo`} />
           </Row>
           <Row>
-            <CoinStats
-              data={[
-                [
-                  { head: "Rank", body: market_cap_rank },
-                  {
-                    head: "Price",
-                    body: current_price,
-                  },
-                  { head: "Market Cap", body: market_cap },
-                ],
-              ]}
-            />
+            <CoinStats data={primaryTable} />
           </Row>
         </Col>
         <Col>
           <Row>
-            <CoinStats
-              data={[
-                [
-                  {
-                    head: "24h high/low",
-                    body: `${high_24h} / ${low_24h}`,
-                  },
-                  {
-                    head: "Highest/Lowest",
-                    body: `${ath} / ${atl}`,
-                  },
-                ],
-                [
-                  { head: "Supply", body: `${total_supply}` },
-                  { head: "Volume", body: `${total_volume}` },
-                ],
-              ]}
-            />
+            <CoinStats data={secondaryTable} />
           </Row>
         </Col>
       </Row>
