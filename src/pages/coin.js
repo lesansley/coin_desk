@@ -7,6 +7,7 @@ import CoinInfo from "../components/coin-info";
 import CoinChart from "../components/coin-chart";
 import CoinSummary from "../components/coin-summary";
 import LastUpdated from "../components/last-updated";
+import fetcher from "../api/fetcher";
 
 function Coin() {
   const [state, setState] = React.useState();
@@ -26,10 +27,9 @@ function Coin() {
   };
   const queryStr = "?" + new URLSearchParams(queryObj).toString();
   const url = `${BASE_URL}/coins/markets/${queryStr}`;
-  const getMarketData = React.useCallback(() => {
-    fetch(url, { method: "GET" })
-      .then((response) => response.json())
-      .then((data) => setState(data[0]));
+  const getMarketData = React.useCallback(async () => {
+    const data = await fetcher(url, { method: "GET" });
+    setState(data[0]);
   }, [url]);
   React.useEffect(() => {
     getMarketData();
