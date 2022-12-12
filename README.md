@@ -1,7 +1,6 @@
 This project is bootstrapped with [create-react-app](https://github.com/facebook/create-react-app).
 
 # Getting Started
-First, run the development server:
 
 ```
 npm start
@@ -9,6 +8,7 @@ npm start
 yarn start
 ```
 Runs the app in development mode.
+
 Open http://localhost:3000 to view it in the browser.
 
 # Project specifications
