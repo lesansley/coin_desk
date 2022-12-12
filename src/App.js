@@ -5,6 +5,7 @@ import Layout from "./components/layout";
 import Dashboard from "./pages/dashboard";
 import ErrorPage from "./pages/error-page";
 import { useStore } from "./hooks";
+import fetcher from "./api/fetcher";
 
 const Coin = React.lazy(() => import("./pages/coin"));
 
@@ -12,12 +13,14 @@ function App() {
   const { setCoinList } = useStore();
 
   React.useEffect(() => {
-    fetch(
-      "https://api.coingecko.com/api/v3/coins/list?include_platform=false",
-      { method: "get" }
-    )
-      .then((response) => response.json())
-      .then((data) => setCoinList(data));
+    async function getCoinList() {
+      const coins = await fetcher(
+        "https://api.coingecko.com/api/v3/coins/list?include_platform=false",
+        { method: "GET" }
+      );
+      setCoinList(coins);
+    }
+    getCoinList();
   }, [setCoinList]);
 
   return (
