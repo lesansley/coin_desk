@@ -1,4 +1,4 @@
-This project is bootstrapped with create-react-app](https://github.com/facebook/create-react-app).
+This project is bootstrapped with [create-react-app](https://github.com/facebook/create-react-app).
 
 # Getting Started
 First, run the development server:
