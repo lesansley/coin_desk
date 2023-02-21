@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useCallback } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Container, Button, Row, Col } from "reactstrap";
 import { useStore } from "../hooks";
@@ -27,11 +27,13 @@ function Coin() {
   };
   const queryStr = "?" + new URLSearchParams(queryObj).toString();
   const url = `${BASE_URL}/coins/markets/${queryStr}`;
-  const getMarketData = React.useCallback(async () => {
+
+  const getMarketData = useCallback(async () => {
     const data = await fetcher(url, { method: "GET" });
     setState(data[0]);
   }, [url]);
-  React.useEffect(() => {
+
+  useEffect(() => {
     getMarketData();
   }, [getMarketData]);
 

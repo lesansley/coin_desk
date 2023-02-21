@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import Layout from "./components/layout";
@@ -12,7 +12,7 @@ const Coin = React.lazy(() => import("./pages/coin"));
 function App() {
   const { setCoinList } = useStore();
 
-  React.useEffect(() => {
+  useEffect(() => {
     async function getCoinList() {
       const coins = await fetcher(
         "https://api.coingecko.com/api/v3/coins/list?include_platform=false",

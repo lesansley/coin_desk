@@ -37,3 +37,4 @@ export const CHART_OPTION_ARRAY = [
   { total_volumes: "Volume" },
   { market_caps: "Market Cap" },
 ];
+export const SUPPORTED_CHAINS = [1, 42, 1337];
